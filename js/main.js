@@ -1,6 +1,4 @@
 function calcularDescuento(precio) {
-    switch(precio){
-    case (precio>0):
     if (precio <= 50) {
       return precio * 0.05;
     } else if (precio <= 100) {
@@ -8,11 +6,7 @@ function calcularDescuento(precio) {
     } else {
       return precio * 0.15;
     }
-    break;
-    case (precio<=0):
-        alert("El precio ingresado en incorrecto")
-
-  } }
+}
 
   
   function mostrarProductosConDescuento() {
@@ -23,16 +17,16 @@ function calcularDescuento(precio) {
   
     for (let i = 1; i <= cantidadProductos; i++) {
       let nombreProducto = prompt("Ingrese el nombre del producto " + i +":" );
-      let precioProducto = parseFloat(prompt("Ingrese el precio del producto "+ i +":"));
+      let precioProducto = parseInt(prompt("Ingrese el precio del producto "+ i +":"));
   
       let descuento = calcularDescuento(precioProducto);
       let precioFinal = precioProducto - descuento;
   
       total += precioFinal;
-      listaProductos += "Producto: " + nombreProducto + ", Precio: $" + precioProducto + ", Descuento: $" + descuento.toFixed(2) + ", Precio Final: $" + precioFinal.toFixed(2) + "\n";
+      listaProductos += "Producto: " + nombreProducto + "\nPrecio: $" + precioProducto + "// Descuento: $" + descuento + "// Precio Final: $" + precioFinal + "\n";
     }
   
-    alert("Lista de productos:\n" + listaProductos + "\nTotal a pagar: $" + total.toFixed(2));
+    alert("Lista de productos:\n" + listaProductos + "\nTotal a pagar: $" + total);
   }
   
   mostrarProductosConDescuento();
