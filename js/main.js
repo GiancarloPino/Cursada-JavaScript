@@ -1,9 +1,9 @@
 function calcularDescuento(precio) {
-    if (precio <= 50) {
+    if (precio >= 50) {
       return precio * 0.05;
-    } else if (precio <= 100) {
+    } else if (precio >= 100) {
       return precio * 0.1;
-    } else {
+    } else if(precio >= 200){
       return precio * 0.15;
     }
 }
