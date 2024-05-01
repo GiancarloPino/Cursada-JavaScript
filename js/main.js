@@ -1,15 +1,18 @@
 function calcularDescuento(precio) {
-    if (precio >= 50) {
-      return precio * 0.05;
-    } else if (precio >= 100) {
-      return precio * 0.1;
-    } else if(precio >= 200){
-      return precio * 0.15;
-    }
-}
+  const descuentos = [
+    { rango: 50, porcentaje: 0.05 },
+    { rango: 100, porcentaje: 0.1 },
+    { rango: 200, porcentaje: 0.15 }
+  ];
 
-  
-  function mostrarProductosConDescuento() {
+  for (let i = 0; i < descuentos.length; i++) {
+    if (precio >= descuentos[i].rango) {
+      return precio * descuentos[i].porcentaje;
+    }
+  }
+  return 0;
+}
+function mostrarProductosConDescuento() {
     let cantidadProductos = parseInt(prompt("Ingrese la cantidad de productos a registrar: "));
   
     let total = 0;
@@ -27,6 +30,6 @@ function calcularDescuento(precio) {
     }
   
     alert("Lista de productos:\n" + listaProductos + "\nTotal a pagar: $" + total);
-  }
-  
-  mostrarProductosConDescuento();
+}
+
+mostrarProductosConDescuento();
