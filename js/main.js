@@ -33,17 +33,11 @@ function calcularDescuento(precio) {
     alert("Lista de productos:\n" + listaProductos + "\nTotal a pagar: $" + total);
 }
 
-mostrarProductosConDescuento();
-let descuentazo = calcularDescuento(145);
-
-console.log(descuentazo);*/
-
-
-
+mostrarProductosConDescuento();*/
 
 function mostrarProductosConDescuento() {
   let cantidadProductos = parseInt(prompt("Ingrese la cantidad de productos a registrar: "));
-  let productos = []; // Arreglo para almacenar los productos
+  let productos = []; 
   let total = 0;
   const hrInicio= {minuto:new Date().getMinutes(), segundo: new Date().getSeconds()};
 
@@ -51,7 +45,7 @@ function mostrarProductosConDescuento() {
     let nombreProducto = prompt("Ingrese el nombre del producto " + i + ":");
     let precioProducto = parseInt(prompt("Ingrese el precio del producto " + i + ":"));
 
-    let descuento = calcularDescuento(precioProducto);
+    let descuento = calcularDescuento(precioProducto);//funcion de orden superior (?)
     let precioFinal = precioProducto - descuento;
 
     total += precioFinal;
@@ -64,11 +58,22 @@ function mostrarProductosConDescuento() {
     });
   }
   const hrFin= {minuto:new Date().getMinutes(), segundo: new Date().getSeconds()};
-
+  sumaPrecios=productos.reduce((acumulador,el)=>acumulador+=el.precio,0); //aplicando reduce
+  console.log(sumaPrecios);
   console.log(productos);
   console.log(hrInicio);
   console.log(hrFin);
-  console.log("te has tardado ",hrFin.minuto-hrInicio.minuto,"minutos con ",hrFin.segundo-hrInicio.segundo," en realizar la operación");
+  console.log("te has tardado ",hrFin.minuto-hrInicio.minuto,"minutos con ",hrFin.segundo-hrInicio.segundo," segundos en realizar la operación");
+
+  let listaProductos = "";
+  productos.forEach(producto => {
+    listaProductos += `Producto: ${producto.nombre} - Precio: ${producto.precio} - Descuento: ${producto.descuento}\n`;
+  });
+
+  alert(listaProductos); // Mostrar lista de productos
+  alert(`Total a pagar: ${total}`); // Mostrar total a pagar
+  alert(`Total descuento: ${totalDescuento}`); // Mostrar total descuento
+  alert(`Tiempo de operación: ${tiempoOperacion} segundos`); // Mostrar tiempo de operación
 }
 
 mostrarProductosConDescuento();
