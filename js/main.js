@@ -12,42 +12,56 @@ function calcularDescuento(precio) {
   }
   return 0;
 }
-function mostrarProductosConDescuento() {
-  let cantidadProductos = parseInt(prompt("Ingrese la cantidad de productos a registrar: "));
-  let productos = []; 
-  let total = 0;
-  const hrInicio= {minuto:new Date().getMinutes(), segundo: new Date().getSeconds()};
-  const xHoraInicio= hrInicio.minuto*60+hrInicio.segundo;//convirtiendo los minutos a segundos
+//iniciando funcion
+function mostrarProductosConDescuento(event) {
+  event.preventDefault();  // que no se actualice
 
-  for (let i = 1; i <= cantidadProductos; i++) {
-    let nombreProducto = prompt("Ingrese el NOMBRE del producto " + i + ":");
-    let precioProducto = parseInt(prompt("Ingrese el PRECIO del producto " + i + ":"));
+  let formulario = event.target;
+  let nombreProducto = formulario.children[0].value; //recibiendo por imput
+  let precioProducto = parseInt(formulario.children[1].value); //recibiendo por input y transformando a numero
 
-    let descuento = calcularDescuento(precioProducto);//funcion de orden superior (?)
-    let precioFinal = precioProducto - descuento;
+  let productos = JSON.parse(localStorage.getItem('productos')) || [];
+  const hrInicio = { minuto: new Date().getMinutes(), segundo: new Date().getSeconds() };
+  const xHoraInicio = hrInicio.minuto * 60 + hrInicio.segundo;
 
-    total += precioFinal;
+  let descuento = calcularDescuento(precioProducto);
+  let precioFinal = precioProducto - descuento;
 
-    productos.push({
-      nombre: nombreProducto,
-      precio: precioProducto,
-      descuento: descuento,
-      precioFinal: precioFinal
-    });
-  }
-  const hrFin= {minuto:new Date().getMinutes(), segundo: new Date().getSeconds()};
-  const xHoraFin= hrFin.minuto*60+hrFin.segundo;//convirtiendo los minutos a segundos
-  sumaPrecios=productos.reduce((acumulador,el)=>acumulador+=el.precioFinal,0); //aplicando reduce para el total
-  sumaDescuentos=productos.reduce((acumulador,el)=>acumulador+=el.descuento,0);//reduce para suma de descuentos
-  let listaProductos = "";//aqui lleno el alert
-  productos.forEach(producto => { //metiendo cada dato a listaProductos
-    listaProductos += "Producto: "+producto.nombre +" // Precio: "+producto.precio + " // Descuento: "+producto.descuento + "// A pagar: "+producto.precioFinal+"\n";
+  productos.push({
+    nombre: nombreProducto,
+    precio: precioProducto,
+    descuento: descuento,
+    precioFinal: precioFinal
   });
 
-  alert(listaProductos); // mostrar lista de productos
-  alert("Total a pagar: "+sumaPrecios); // mostrar total a pagar
-  alert("Usted se ha ahorrado: "+sumaDescuentos); // mostrar total descuento
-  alert("Usted solo tardo: "+(xHoraFin-xHoraInicio)+" segundos!.\nVuelva Pronto!!!"); // Mostrar tiempo de operación
+  localStorage.setItem('productos', JSON.stringify(productos));
+
+  const hrFin = { minuto: new Date().getMinutes(), segundo: new Date().getSeconds() };
+  const xHoraFin = hrFin.minuto * 60 + hrFin.segundo;
+  const sumaPrecios = productos.reduce((acumulador, el) => acumulador += el.precioFinal, 0);
+  const sumaDescuentos = productos.reduce((acumulador, el) => acumulador += el.descuento, 0);
+
+  let listaProductos = "";
+  productos.forEach(producto => {
+    listaProductos += `Producto: ${producto.nombre}\nPrecio: ${producto.precio}\nDescuento: ${producto.descuento}\nA pagar: ${producto.precioFinal}\n`;
+  });
+
+  let main = document.getElementById("main");
+  const parrafo = document.createElement("p");
+
+  parrafo.innerText = `\n${listaProductos}\nTotal a pagar: ${sumaPrecios}\nUsted se ha ahorrado: ${sumaDescuentos}\nUsted solo tardo: ${(xHoraFin - xHoraInicio)} segundos!\nVuelva Pronto!!!`;
+
+  main.appendChild(parrafo);
+  
 }
 
-mostrarProductosConDescuento();
+console.log(localStorage);
+const formulario = document.getElementById("formulario");
+formulario.addEventListener("submit", mostrarProductosConDescuento);
+const boton2 = document.getElementById("btn-limpiar");
+boton2.onclick = function() {
+  localStorage.clear();
+};
+
+
+
