@@ -20,7 +20,7 @@ function mostrarProductosConDescuento(event) {
   let nombreProducto = formulario.children[0].value; //recibiendo por imput
   let precioProducto = parseInt(formulario.children[1].value); //recibiendo por input y transformando a numero
 
-  let productos = JSON.parse(localStorage.getItem('productos')) || [];
+  let productos = JSON.parse(localStorage.getItem('productos')) || []; //funcion or, nota: agregar mas func orden superior
   const hrInicio = { minuto: new Date().getMinutes(), segundo: new Date().getSeconds() };
   const xHoraInicio = hrInicio.minuto * 60 + hrInicio.segundo;
 
