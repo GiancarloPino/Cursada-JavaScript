@@ -1,0 +1,83 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(22, 0, 22);
+    color: white;
+}
+#contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    background-color: #333;
+    
+}
+
+/* Estilos para cada tarjeta de producto */
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 500px;
+    border: 1px solid #7e7e7e;
+    background-color: #cce9ec;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+.tarjeta:hover {
+    background-color: #e0ffe0;
+}
+
+.product-imagen {
+    width: 90%;
+    height: 200px;
+    padding: 15px;
+    object-fit: contain;
+}
+
+.product-detalle {
+    padding: 16px;
+}
+
+.product-titulo {
+    font-size: 1.5em;
+    margin: 0;
+    height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(22, 0, 22);
+}
+
+.product-descripcion {
+    margin: 8px 0;
+    color: #555;
+    overflow: hidden;         
+    text-overflow: ellipsis;     
+    max-height: 60px; 
+}
+
+.product-precio {
+    font-size: 1.2em;
+    color: #333;
+    margin: 8px 0;
+}
+
+.boton {
+    width: fit-content;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: blue;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tarjeta:hover .boton {
+    background-color: green;
+}

@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <title>Cursada JavaScript</title>
 </head>
 <body>    
     <div id="main">
         <h1>Primer Proyect JavaScript </br> Tienda de productos</h1>
-        <h2>Ingrece cuantos productos va registrar </br>
-            Ingrese el nombe del prodcuto</br>
-            Ingrese el precio del producto</br></br></h2>
-        <h3>
-            Si el producto cuesta más de $50 recibe 5% de descuento!</br>
-            Si el producto cuesta más de $100 recibe 10% de descuento!</br>
-            Si el producto cuesta más de $200 recibe 15% de descuento!</br>
-        </h3>
     </div>
-    <form id="formulario">
-        <input type="text" id="producto" placeholder="Ingrese el producto"></input>
-        <input type="number" id="precio" placeholder="Ingrese el precio"></input><br>
-        <input type="submit" value="Enviar">
-    </form>
-
-    <button id="btn-limpiar">Borrar carrito</button>
-
+    <button id="boton-producto" class="boton">Ver Productos</button>
+    <button id="boton-carrito" class="boton">Ver Carrito</button>
+    <button id="boton-borrar-carrito" class="boton">Borrar Carrito</button>
+    <button id="boton-pagar" class="boton"><img src="https://cdn-icons-png.flaticon.com/512/4564/4564998.png" width="30px" height="30px">Pagar</button>
+    <section id="contenedor">
+        
+    </section>
     <script src="./js/main.js"></script>
     
 </body>
